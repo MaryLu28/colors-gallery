@@ -17,6 +17,9 @@ function App() {
 
   return (
     <div className={classes.mainContainer}>
+      <header className={classes.appHeader}>
+        <h1>Paleta de Colores</h1>
+      </header>
       <div className={classes.cardsContainer}>
         {error && error.message}
         {loading && "Loading..."}
