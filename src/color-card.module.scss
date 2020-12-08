@@ -1,0 +1,55 @@
+.card {
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  align-content: center;
+  position: relative;
+  cursor: pointer;
+
+  .name,
+  .color,
+  .successCopy {
+    width: 100%;
+    text-align: center;
+  }
+
+  .name {
+    font-size: 30px;
+  }
+
+  .color,
+  .successCopy {
+    font-size: 40px;
+  }
+
+  .successCopy {
+    display: none;
+  }
+
+  span {
+    position: absolute;
+
+    &.year {
+      top: 20px;
+      left: 20px;
+    }
+
+    &.pantone {
+      bottom: 20px;
+      right: 20px;
+    }
+  }
+
+  &.clicked {
+    .name,
+    .color {
+      display: none;
+    }
+
+    .successCopy {
+      display: block;
+    }
+  }
+}

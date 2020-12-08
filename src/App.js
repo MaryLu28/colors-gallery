@@ -1,4 +1,5 @@
-import "./App.scss";
+import classes from "./App.module.scss";
+import Button from "react-bootstrap/Button";
 
 import ColorCard from "./color-card";
 
@@ -12,18 +13,34 @@ function App() {
     error,
     data = [],
   } = useFetch(`https://reqres.in/api/colors?page=${count}`, [count]);
-
-  console.log(data.data);
+  const pages = data.total_pages;
 
   return (
-    <div className="App">
-      <div>
+    <div className={classes.mainContainer}>
+      <div className={classes.cardsContainer}>
         {error && error.message}
         {loading && "Loading..."}
-        {data && data.data?.map((item) => <ColorCard {...item} />)}
+        {data &&
+          data.data?.map((item) => (
+            <ColorCard className={classes.colorCard} {...item} />
+          ))}
       </div>
-      <button onClick={() => setCount(count - 1)}>Anterior</button>
-      <button onClick={() => setCount(count + 1)}>Siguiente</button>
+      <div className={classes.btnsContainer}>
+        <Button
+          variant="primary"
+          onClick={() => setCount(count - 1)}
+          disabled={count == 1}
+        >
+          Anterior
+        </Button>
+        <Button
+          variant="primary"
+          onClick={() => setCount(count + 1)}
+          disabled={count == pages}
+        >
+          Siguiente
+        </Button>
+      </div>
     </div>
   );
 }
